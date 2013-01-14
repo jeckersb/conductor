@@ -33,8 +33,8 @@ class Catalog < ActiveRecord::Base
 
   belongs_to :pool
   belongs_to :pool_family
-  has_many :catalog_entries, :dependent => :destroy
-  has_many :deployables, :through => :catalog_entries
+  has_many :catalog_entries, :dependent => :destroy, :inverse_of => :catalog
+  has_many :deployables, :through => :catalog_entries, :inverse_of => :catalogs
   has_many :permissions, :as => :permission_object, :dependent => :destroy,
            :include => [:role],
            :order => "permissions.id ASC"

@@ -39,8 +39,8 @@ class Deployable < ActiveRecord::Base
            :include => [:role],
            :order => "derived_permissions.id ASC"
 
-  has_many :catalog_entries, :dependent => :destroy
-  has_many :catalogs, :through => :catalog_entries
+  has_many :catalog_entries, :dependent => :destroy, :inverse_of => :deployable
+  has_many :catalogs, :through => :catalog_entries, :inverse_of => :deployables
   belongs_to :pool_family
 
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"

@@ -27,8 +27,8 @@
 #
 
 class CatalogEntry < ActiveRecord::Base
-  belongs_to :catalog
-  belongs_to :deployable
+  belongs_to :catalog, :inverse_of => :catalog_entries
+  belongs_to :deployable, :inverse_of => :catalog_entries
 
   validates_presence_of :catalog
   validates_presence_of :deployable
